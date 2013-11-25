@@ -194,4 +194,9 @@ typedef CURL_TYPEOF_CURL_OFF_T curl_off_t;
 /* unsigned curl_off_t constant suffix. */
 #define CURL_SUFFIX_CURL_OFF_TU ${CURL_SUFFIX_CURL_OFF_TU}
 
+/* when not building a shared library */
+#ifndef CURL_STATICLIB
+#cmakedefine CURL_STATICLIB ${CURL_STATICLIB}
+#endif
+
 #endif /* __CURL_CURLBUILD_H */
