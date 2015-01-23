@@ -553,7 +553,7 @@ endif(NOT HAVE_STRICMP)
 
 # For other curl specific tests, use this macro.
 macro(CURL_INTERNAL_TEST CURL_TEST)
-  if("${CURL_TEST}" MATCHES "^${CURL_TEST}$")
+  if(NOT DEFINED "${CURL_TEST}")
     set(MACRO_CHECK_FUNCTION_DEFINITIONS
       "-D${CURL_TEST} ${CURL_TEST_DEFINES} ${CMAKE_REQUIRED_FLAGS}")
     if(CMAKE_REQUIRED_LIBRARIES)
@@ -581,11 +581,11 @@ macro(CURL_INTERNAL_TEST CURL_TEST)
         "Performing Curl Test ${CURL_TEST} failed with the following output:\n"
         "${OUTPUT}\n")
     endif(${CURL_TEST})
-  endif("${CURL_TEST}" MATCHES "^${CURL_TEST}$")
+  endif(NOT DEFINED "${CURL_TEST}")
 endmacro(CURL_INTERNAL_TEST)
 
 macro(CURL_INTERNAL_TEST_RUN CURL_TEST)
-  if("${CURL_TEST}_COMPILE" MATCHES "^${CURL_TEST}_COMPILE$")
+  if(NOT DEFINED "${CURL_TEST}_COMPILE")
     set(MACRO_CHECK_FUNCTION_DEFINITIONS
       "-D${CURL_TEST} ${CMAKE_REQUIRED_FLAGS}")
     if(CMAKE_REQUIRED_LIBRARIES)
@@ -617,7 +617,7 @@ macro(CURL_INTERNAL_TEST_RUN CURL_TEST)
       file(APPEND "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeError.log"
         "\n\n")
     endif(${CURL_TEST}_COMPILE AND NOT ${CURL_TEST})
-  endif("${CURL_TEST}_COMPILE" MATCHES "^${CURL_TEST}_COMPILE$")
+  endif(NOT DEFINED "${CURL_TEST}_COMPILE")
 endmacro(CURL_INTERNAL_TEST_RUN)
 
 # Do curl specific tests
