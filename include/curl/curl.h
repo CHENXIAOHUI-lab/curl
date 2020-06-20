@@ -34,6 +34,22 @@
 #define CURL_STRICTER
 #endif
 
+// [Slicer]
+// Defining CURL_STATICLIB before including "curl/curl.h" is required
+// on Windows.
+//
+// To avoid updating all dependencies, we explicitly define CURL_STATICLIB
+// in curl.h
+//
+// References:
+// * https://github.com/Slicer/Slicer/pull/4997#issuecomment-647037605
+// * https://github.com/curl/curl/blob/master/docs/INSTALL.md#important-static-libcurl-usage-note
+//
+#ifndef CURL_STATICLIB
+#define CURL_STATICLIB
+#endif
+// [/Slicer]
+
 #include "curlver.h"         /* libcurl version defines   */
 #include "system.h"          /* determine things run-time */
 
